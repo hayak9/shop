@@ -1,0 +1,40 @@
+<center>
+<strong><font size = "4" color=#990033>
+
+<h1> Reviews </h1>
+
+<%= will_paginate @products %>
+
+<div align="left">
+<%= link_to 'New Review', new_review_path, class: 'link-to' %>
+</div>
+
+<table id="reviewsTbl">
+	<% @reviews.each do |review| %>
+		<tr><td><font size = "4">
+			Product:
+			<br><font color=black><%= review.product.name%></font>
+			<br><br>
+			Stars: 
+			<font color=black><%= review.stars %></font>
+			<br><br>
+			User: 
+			<font color=black><%= review.user.firstname %></font>
+			<br><br>
+			Comment:
+			<br><font color=black><%= review.comment %></font>
+			<br><br>
+			<%= link_to 'Show', review, class: 'link-to' %>
+			<%= link_to 'Edit', edit_review_path(review), class: 'link-to' %>
+			<%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
+			<br><br>
+		</td>
+		<td >
+		<img src="assets/<%= review.product.image%>/" width="150" height="150">
+	   </td> 
+		</tr>
+	<% end %>
+</table>
+
+</center>
+</font>

@@ -1,0 +1,50 @@
+<center>
+<strong><font size = "4" color=#990033>
+
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :product_type %>
+    <%= select_tag("Product Type", options_for_select([['Face', '1'],
+                 ['Eyes', '2'],['Lips','3'],['Brows','4'],['Nails','5'],['Tools','6']], '1')) %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.text_field :image %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :brand_id %>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name %>  </div>
+
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+</font>
+</center>

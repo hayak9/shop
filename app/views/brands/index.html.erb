@@ -1,0 +1,29 @@
+<center>
+<h1>Brands</h1>
+<strong><font size = "4" color=#990033>
+<%= will_paginate @brands %>
+<br>
+
+<div id ="new" >
+	<%= link_to 'Add New Brand', new_brand_path, class: 'link-to'  %>
+</div>
+
+<table cellspacing="50">
+  <tbody>
+	<% @brands.each do |brand| %>
+		<td>
+			<center><font size = "4"><%= brand.name %>
+		<br>
+			<%= link_to 'Show', brand, class: 'link-to' %>
+			<%= link_to 'Edit', edit_brand_path(brand), class: 'link-to' %>
+			<%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
+		<br>
+			<img src="assets/<%= brand.image%>" width="200" height="200">
+		</font></center></td>
+	<% end %>
+   </tbody>
+</table>
+
+</font>
+</center>
+

@@ -1,0 +1,60 @@
+<center>
+<strong><font size = "4" color=#990033>
+<style>
+td,tr {
+    border: 1px solid black;
+	text-align: center;
+	font-size:25px;
+	}
+	td{
+	height: 50px;
+	width: 250px;
+	padding: 10px;
+	font-size:20px;
+	color: black;
+	background: #FFEBEE;
+	}
+</style>
+
+<%= form_for(@brand) do |f| %>
+  <% if @brand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+
+      <ul>
+      <% @brand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <table>
+	<tr>
+		<th>
+			<%= f.label :name %><br>
+		</th>
+		<td>
+			 <%= f.text_field :name %>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>
+			<%= f.label :image %><br>
+			
+		</th>
+		<td>
+			<%= f.text_field :image %>
+		</td>
+	</tr>
+</table>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>
+
+</font>
+</center>

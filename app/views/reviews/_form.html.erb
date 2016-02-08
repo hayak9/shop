@@ -1,0 +1,38 @@
+<center>
+<strong><font size = "4" color=#990033>
+
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :product_id %>
+	<%= f.collection_select :product_id, Product.all, :id, :name %>  </div>
+  </div>
+  <div class="field">
+    <%= f.label :stars %>
+    <%= f.number_field :stars %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %>
+	<%= f.collection_select :user_id, User.all, :id, :firstname %>  </div>
+  </div>
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</font>
+</center>

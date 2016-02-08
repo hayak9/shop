@@ -1,0 +1,30 @@
+<center>
+<strong><font size = "4" color=#990033>
+
+<div align="left">
+<%= link_to 'Edit', edit_user_path(@user), class: 'link-to'  %> |
+<%= link_to 'Back', users_path, class: 'link-to'  %>
+</div>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+</font>
+</center>

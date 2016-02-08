@@ -1,0 +1,50 @@
+<center>
+<strong><font size = "4" color=#990033>
+
+<h1> Detail's </h1>
+
+<style>
+td,tr {
+    border: 1px solid black;
+	text-align: center;
+	font-size:25px;
+	}
+	td{
+	height: 50px;
+	width: 250px;
+	padding: 10px;
+	font-size:20px;
+	color: black;
+	background: #FFEBEE;
+	}
+</style>
+
+<div align="left">
+| <%= link_to 'Back', brands_path, class: 'link-to' %> |
+<%= link_to 'Edit', edit_brand_path(@brand), class: 'link-to' %> |
+</div>
+
+<table>
+	<tr>
+		<th>
+			<strong>Name:</strong>
+		</th>
+		<td>
+			<%= @brand.name %>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>
+			<strong>Image:</strong>
+			
+		</th>
+		<td>
+			<%= @brand.image %>
+		</td>
+	</tr>
+</table>
+
+</strong>
+</font>
+</center>

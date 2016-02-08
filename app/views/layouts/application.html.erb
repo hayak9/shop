@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BeautyShop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="banner">
+	<%= image_tag("logo11.jpg", :size => "250x80") %>
+</div>
+<br>
+<div id="nav">
+	<ul>
+		<li><%=link_to "Home", root_path %></li>
+		<li><%=link_to "Brands", brands_path %></li>
+		<li><%=link_to "Products", products_path %></li>
+		<li><%=link_to "Reviews", reviews_path %></li>
+		<li><%=link_to "User", users_path %></li>
+		<li><%=mail_to "hayabeauty@mail.com", "Contact us", class: "link-to-c" %></li>
+		
+	</ul>
+</div>
+<br>
+
+<%= yield %>
+
+</body>
+</html>
