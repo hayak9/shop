@@ -14,23 +14,35 @@
     </div>
   <% end %>
   
-  <div class="field">
-    <%= f.label :product_id %>
-	<%= f.collection_select :product_id, Product.all, :id, :name %>  </div>
-  </div>
-  <div class="field">
-    <%= f.label :stars %>
-    <%= f.number_field :stars %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %>
-	<%= f.collection_select :user_id, User.all, :id, :firstname %>  </div>
-  </div>
-  <div class="field">
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-  </div>
-  <div class="actions">
+  <table>
+	  <tr>
+		<td>
+			<%= f.label :product_id %>
+			<br>
+			<%= f.collection_select :product_id, Product.all, :id, :name %>  </div>
+		</td>
+		<td>
+			<%= f.label :stars %>
+			<br>
+			<%= f.number_field :stars %>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			
+			<%= f.label :user_id %>
+			<%= f.collection_select :user_id, User.all, :id, :firstname %>  </div>
+		</td>
+		<td>
+			<%= f.label :comment %>
+			<br>
+			<%= f.text_area :comment %>
+		</td>
+		</tr>
+	</table>
+
+    <div class="actions">
+	<br>
     <%= f.submit %>
   </div>
 <% end %>

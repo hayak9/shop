@@ -21,8 +21,7 @@
   <br>
   <div class="field">
     <%= f.label :product_type %>
-    <%= select_tag("Product Type", options_for_select([['Face', '1'],
-                 ['Eyes', '2'],['Lips','3'],['Brows','4'],['Nails','5'],['Tools','6']], '1')) %>
+    <%= f.select :product_type, ['Face', 'Eyes', 'Lips', 'Brows','Nails', 'Tools'] %>
   </div>
   <br>
   <div class="field">
