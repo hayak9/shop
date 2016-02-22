@@ -1,16 +1,23 @@
 Rails.application.routes.draw do
+
   get 'pages/home'
-
   get 'pages/about'
-
+  
   resources :users
-
   resources :reviews
-
   resources :products
-
   resources :brands
-
+  
+  controller :sessions do
+	 get 'login' => :new
+	 post 'login' => :create
+	 get 'logout' => :destroy
+	 delete 'logout' => :destroy
+ end
+	
+	resources :products do 
+		resources :reviews 
+	end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

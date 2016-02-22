@@ -1,3 +1,28 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#ud{
+td,tr,th {
+	text-align: center;
+	font-size:30px;
+	}
+	td{
+	width: 250px;
+	padding: 10px;
+	font-size:20px;
+	color: black;
+	
+	}
+	th{
+	color: #d21e48;}
+	td{
+	color: #614c51;}
+	
+  	
+	
+}
+#field {
+   color: #614c51;
+   }
+#field label{color: #d21e48;}

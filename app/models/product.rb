@@ -7,5 +7,7 @@ class Product < ActiveRecord::Base
 	validates :name, uniqueness: true
 	validates :name, :price, presence: true
 	
-
+	def average_stars
+		reviews.average(:stars)
+	end
 end

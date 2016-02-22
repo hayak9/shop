@@ -1,31 +1,35 @@
 <center>
-<strong><font size = "4" color=#990033>
+<strong><font size = "4" color=#000000>
+<div id="prStyle">
 <h1>Beauty Product's</h1>
 <%= will_paginate @products %>
 
 <%= link_to 'Add New Product', new_product_path, class: 'link-to' %>
-
-<table cellpadding="50">
+<table id="td1">
   	<% @products.each do |product| %>
-		<td><font size = "4">
-			Name: <%= product.name %>
+	<td width="20%">
+		<img src="assets/<%= product.image%>/" width="150" height="150">
+	   </td> 
+		<td  width="70%">
+			<font color=#000000> Name: </font>
+			<%= product.name %>
 			<br><br>
-			Type: <%= product.product_type %>
+			<font color=#000000> Type: </font>
+			<%= product.product_type %>
 			<br><br>
-			Price: <%= euro(product.price) %>
+			<font color=#000000> Price: </font>
+			<%= euro(product.price) %>
 			<br><br>
-			Brand: <%= product.brand.name %>
+			<font color=#000000> Brand: </font>
+			<%= product.brand.name %>
 			<br><br>
 			<%= link_to 'Show', product, class: 'link-to' %>
 			<%= link_to 'Edit', edit_product_path(product), class: 'link-to' %>
 			<%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
 		</td>   
-	   <td >
-		<img src="assets/<%= product.image%>/" width="150" height="150">
-	   </td> 
+	   
 	   <tr>
     <% end %>
 </table>
-
-</font>
-</center>
+</div>
+</center></font>

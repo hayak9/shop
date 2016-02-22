@@ -13,9 +13,11 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 #banner {
-  background: #FFFFFF;
+  background: black;
   padding:0px;
   border-bottom: 4px solid;
   font: small-caps 50px/40px "Times New Roman", serif;
@@ -27,11 +29,14 @@
     float: center;
   }
 }
+#h2{
+background-color: #ffffff;
+color: black;
 
+}
 #nav {
   float: center;
   background-color: #80324C;
-  padding: 0 0.7em;
   white-space: nowrap;  
   width: 100%;
 }
@@ -87,4 +92,6 @@ a.link-to-c {
    width:30%;
 
 }
+
+
 

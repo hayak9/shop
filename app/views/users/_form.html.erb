@@ -1,5 +1,5 @@
 <center>
-<strong><font size = "4" color=#990033>
+<strong><font size = "4" color=#000000>
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -12,8 +12,8 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+<div id="field">
+  <div class="field" >
     <%= f.label :firstname %><br>
     <%= f.text_field :firstname %>
   </div>
@@ -31,16 +31,21 @@
   </div>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
 	</div>
   <div class="field">
 	<%= f.label :password_confirmation %><br />
 	<%= f.password_field :password_confirmation %>
 	</div>
+	<div class="field">
+		Enter code for admin users: <br />
+		<%= f.label :admincode %><br />
+		<%= f.text_field :admincode%>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
+</div>
 </font>
 </center>

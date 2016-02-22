@@ -1,11 +1,53 @@
 <center>
-<strong><font size = "4" color=#990033>
+<strong><font size = "4" color=#000000>
+<div align="left">
+	| <%= link_to 'Edit', edit_user_path(@current_user), class: 'link-to'  %> |
+</div>
 
-<h1>Users</h1>
+
+<% if signed_in? %>
+<table id="ud">
+	<tr>
+		<th>
+			Name:
+		</th>
+		<td>
+			<%= @current_user.firstname %>
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Lastname:
+		</th>
+		<td>
+			<%= @current_user.lastname %>
+		</td>
+	</tr>
+		<tr>
+		<th>
+			Email:
+		</th>
+		<td>
+			<%= @current_user.email %>
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Address:
+		</th>
+		<td>
+			<%= @current_user.address %>
+		</td>
+	</tr>
+</table>
+<%end %> 
+<br>
+
+<% if @current_user.admin == true %>
+<h1>All Users</h1>
 <div align="left">
 <%= link_to 'New User', new_user_path, class: 'link-to'  %>
 </div>
-
 <table>
   <thead>
     <tr>
@@ -31,7 +73,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%end%>
 <br>
 
 

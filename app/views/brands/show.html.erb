@@ -1,22 +1,24 @@
 <center>
-<strong><font size = "4" color=#990033>
+<strong><font size = "4" color=#000000>
 
-<h1> Detail's </h1>
+<h1> <%= @brand.name%> Products </h1>
 
 <style>
-td,tr {
-    border: 1px solid black;
+td,tr,th {
 	text-align: center;
-	font-size:25px;
+	font-size:30px;
 	}
 	td{
-	height: 50px;
 	width: 250px;
 	padding: 10px;
 	font-size:20px;
 	color: black;
-	background: #FFEBEE;
+	
 	}
+	th{
+	color: #d21e48;}
+	td{
+	color: #614c51;}
 </style>
 
 <div align="left">
@@ -26,23 +28,30 @@ td,tr {
 
 <table>
 	<tr>
+
 		<th>
-			<strong>Name:</strong>
+			<strong>Name</strong>
 		</th>
+		<th>
+			<strong>Image</strong>
+			
+		</th>
+	</tr>
+	
+	<tr><% @brand.products.each do |product| %>
 		<td>
-			<%= @brand.name %>
+			<%= product.name %>
+		</td>
+		<td>
+		<img src="../assets/<%= product.image%>/" width="150" height="150">
+
 		</td>
 	</tr>
 	
-	<tr>
-		<th>
-			<strong>Image:</strong>
-			
-		</th>
-		<td>
-			<%= @brand.image %>
-		</td>
-	</tr>
+	
+	
+	<br />
+	<% end %>
 </table>
 
 </strong>
