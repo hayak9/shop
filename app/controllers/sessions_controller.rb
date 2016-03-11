@@ -1,15 +1,14 @@
 class SessionsController < ApplicationController
   def new
-  
   end
 
   def create
   user = User.find_by_email(params[:email])
 	if user && user.authenticate(params[:password])
-		session[:user_id] = user.id 	#stores the id in the session
-		render 'pages/home' 			#displays the user/show view
+		session[:user_id] = user.id 	
+		redirect_to session[:return_to] || root_path
 	else
-		flash.now[:error] = "Invalid email/password combination."
+      flash[:danger] = 'Invalid email/password combination' 
 		render 'new' #shows the login page again
 	end
   end
@@ -22,5 +21,4 @@ class SessionsController < ApplicationController
 	end
 		redirect_to login_path
 	end
-
 end

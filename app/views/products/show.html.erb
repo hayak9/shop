@@ -1,10 +1,11 @@
 <center>
 <font size = "5" color=#000000>
+<% if @current_user.try(:admin?) %>
+	<div align="left">
+		<%= link_to 'Edit', edit_product_path(@product), class: 'link-to' %> 
+	</div>
+<%end%>
 
-<div align="left">
-|<%= link_to 'Edit', edit_product_path(@product), class: 'link-to' %> |
-<%= link_to 'Back', products_path, class: 'link-to' %>|
-</div>
 <table width="85%">
 	<tr>
 		<td width="40%">
@@ -30,44 +31,50 @@
 			<br>
 			<li>
 			  <font color=#000000>Price:</font>
-			  <%= @product.price %>
+			  <%= euro@product.price %>
 			</li>
 			</div>
 		</td>
 		<td width="60%" align="left" id="s2">
 			<h2>Rate & Review</h2>
-			<%= form_for([@product, Review.new]) do |f| %>
-
-			<h3><%= f.label :stars %>
-			 <% stars = [1, 2, 3, 4, 5] %>
-			 <% stars.each do |star| %>
-			<%= f.radio_button :stars, star %> <%= star %>
-			 <% end %>
-			</h3></br>
-			 <%= f.text_area :comment, :rows => 4, :cols => 40 %>
-			<div class="actions">
-			<%= f.submit "Post Review"%>
-			</div>
-			<% end %>
-
+			<h3>
+				<strong><%= @product.name%> Review </strong>
+				<br><br/>
+				Rating <%= number_with_precision( @product.average_stars, precision: 0) %>
+			</h3>
 			<% if @product.reviews.empty? %>
 			<h3>You are the first to comment </h3>
 			<% else %>
-			<div>
-			User Reviews of <%= @product.name%>
-			<br><br>
-			 Star Rating :<%= number_with_precision( @product.average_stars, precision: 0) %>
-			<br>
 			<% @product.reviews.reverse.each do |review| %>
-			<br>	
-			User <%=review.user.firstname %>: <%= review.comment %>	...
-			Posted: <%= time_ago_in_words(review.created_at) %> ago 
-			<br>
+			<div class="col-sm-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong><%=review.user.firstname %></strong>
+						<span class="text-muted"> Commented <%= time_ago_in_words(review.created_at) %> ago </span>
+					</div>
+					<div class="panel-body">
+						<%= review.comment %>
+					</div>
+				</div>
+			</div><% end %>
 			<% end %>
-			<br>
-			
+			<hr>
+			<div class="col-sm-9">
+			<%= form_for([@product, Review.new]) do |f| %>
+			  <h3>
+				<%= f.label :stars %>
+				<% stars = [1, 2, 3, 4, 5] %>
+				<% stars.each do |star| %>
+				<%= f.radio_button :stars, star %> <%= star %>
+			 <% end %>
+			   </h3>
+			</br>
+			<div class="form-group">
+				<%= f.text_area :comment, :class=>"form-control", :rows=>"3" %>
+			    <%= f.submit "Post Review", :class=>"btn btn-default"%>
 			</div>
 			<% end %>
+			</div>
 		</td>
 	</tr>
 </table>

@@ -3,11 +3,18 @@
 <html>
 <head>
   <title>BeautyShop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="signin.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body id="h2" >
+<body id="h2" ><center>
 <nav class="navbar navbar-inverse" style="background-color:black;" >
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,7 +28,6 @@
       <a class="navbar-brand" href="#">
 		<%= image_tag("logo11.png", :size => "200x35") %>
 	  </a>
-	  
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,26 +35,52 @@
       <ul class="nav navbar-nav">
 		<li><%=link_to "Home", root_path %></li>
 		<li><%=link_to "Brands", brands_path %></li>
-		<li><%=link_to "Products", products_path %></li>
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Products <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%=link_to "View All", products_path%></li>
+            <li><%=link_to "Face", products_face_path%></li>
+            <li><%=link_to "Eyes", products_eyes_path%></li>
+			<li><%=link_to "Lips", products_lips_path%></li>
+			<li><%=link_to "Brows", products_brows_path%></li>
+			<li><%=link_to "Nails", products_nails_path%></li>
+			<li><%=link_to "Tools", products_tools_path%></li>	
+          </ul>
+        </li>
 		<li><%=link_to "Reviews", reviews_path %></li>
 		<li><%=link_to "User", users_path %></li>
+		</ul>
 		
+		<ul class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+			<%= form_tag(search_path, :method => "get") do %> 
+			<%= text_field_tag(:query, params[:query], :placeholder => "Search Product", :class => "form-control" ) %>
+			<% end %>
+        </div>
       </ul>
+	 
       <ul class="nav navbar-nav navbar-right">
-	  <li><%=mail_to "hayabeauty@mail.com", "Contact us", class: "link-to-c" %></li>
-		<li><%=link_to "Register?", new_user_path %></li>
+	  	<li><%=link_to "Cart", carts_show_path%></li>	
+
+	  <li><%=mail_to "hayabeauty@mail.com", "Contact", class: "link-to-c" %></li>
+		<li><%=link_to "Register", new_user_path %></li>
 		<% if !signed_in? %>
-			<li><%= link_to "Sign In", login_path %></li>
+			<li><%= link_to "Login", login_path %></li>
 		<% else %>
-			<li><%= link_to "Sign Out", logout_path %></li>
+			<li><%= link_to "Logout", logout_path %></li>
 		<%end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<% flash.each do |key, value|%>
+		<div class="flash <%=key%>">
+			<%= value %>
+		</div>
+	<% end %>
 <%= yield %>
 
 		
-
+</center>
 </body>
 </html>

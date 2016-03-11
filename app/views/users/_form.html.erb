@@ -1,5 +1,6 @@
 <center>
-<strong><font size = "4" color=#000000>
+<font size = "4" color=#000000>
+<form class="form-inline" role="form" >
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -12,40 +13,33 @@
       </ul>
     </div>
   <% end %>
-<div id="field">
-  <div class="field" >
-    <%= f.label :firstname %><br>
-    <%= f.text_field :firstname %>
+<div id="boxshadow" >
+  <div class="form-group" ><br />
+    <%= f.text_field :firstname,  class:"form-control", placeholder:" First Name" %>
+    <%= f.text_field :lastname,  class:"form-control", placeholder:" Surname"%>
   </div>
-  <div class="field">
-    <%= f.label :lastname %><br>
-    <%= f.text_field :lastname %>
+  <br />
+  <div class="form-group"><br />
+    <%= f.text_field :email,  class:"form-control", placeholder:" Email" %>
+    <%= f.text_field :address,  class:"form-control", placeholder:" Address" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+	<br />
+  <div class="form-group"><br />
+    <%= f.password_field :password,  class:"form-control", placeholder:"Password " %>
+	<%= f.password_field :password_confirmation,  class:"form-control", placeholder:" Confirm Password" %>
 	</div>
-  <div class="field">
-	<%= f.label :password_confirmation %><br />
-	<%= f.password_field :password_confirmation %>
-	</div>
-	<div class="field">
-		Enter code for admin users: <br />
-		<%= f.label :admincode %><br />
-		<%= f.text_field :admincode%>
+	<br>
+	<div class="form-group"><br />
+		<font color="red";> ADMIN Users Only: </font>
+		<%= f.text_field :admincode,  class:"form-control", placeholder:"CODE"%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br />
+  <div class="actions"><br />
+    <%= f.submit class:"btn btn-lg btn-primary" %>
+  </div>
   </div>
 <% end %>
-</div>
-</font>
+</form>
 </center>
+</font>
+

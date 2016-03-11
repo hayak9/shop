@@ -1,0 +1,58 @@
+<center>
+<strong><font size = "4" color=#000000>
+<h1>Tools ~ Category  </h1>
+<hr>
+
+ <% @products.each do |product| %>
+	<% if product.product_type.eql? "Tools" %>
+	<div class="col-sm-6 col-md-4">
+    <div class="thumbnail thumb-box">
+		
+		<div class="caption" style="text-align:center;">
+
+            <%= link_to Like_product_path(product),  class: "like", method: :put do %>
+              <button type="button" class="btn btn-info" aria-label="Left Align">
+                <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+                <span class="badge"><%= product.get_upvotes.size %></span>
+              </button>
+            <% end %>
+
+            <%= link_to unLike_product_path(product), class: "like", method: :put do %>
+              <button type="button" class="btn btn-info" aria-label="Left Align"> 
+                <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+                <span class="badge"><%= product.get_downvotes.size %></span>
+              </button>  
+            <% end %>
+
+      </div>
+      
+      	<%= image_tag(product.image, :size=>"150x150")%>
+		<br>
+		<%= link_to 'Show Reviews', product, class: 'link-to' %>
+	    <br>
+			<font color=#000000> Name: </font>
+			<%= product.name %>
+			<br><br>
+			<font color=#000000> Type: </font>
+			<%= product.product_type %>
+			<br><br>
+			<font color=#000000> Price: </font>
+			<%= euro(product.price) %>
+			<br><br>
+			<font color=#000000> Brand: </font>
+			<%= product.brand.name %>
+			<br><br>
+			<%= button_to 'Add to Cart', lineitems_path(product_id: product) %>
+			<br><br>
+			
+			<% if @current_user.try(:admin?) %>
+			<%= link_to 'Edit', edit_product_path(product), class: 'link-to' %>
+			<%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
+		<%end%>
+
+    </div>
+  </div>
+	
+    <% end %>
+ <%end%>
+</center></font>

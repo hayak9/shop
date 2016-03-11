@@ -1,31 +1,31 @@
-
-<center><strong><font size = "4" color=#000000>
+<center>
+<strong><font size = "4" color=#000000>
 <div id="style">
 <h1>Brands</h1>
+
 <%= will_paginate @brands %>
-<div id ="new" >
-	<%= link_to 'Add New Brand', new_brand_path, class: 'link-to'  %>
-</div>
-<br>
-<div class="wrapper">
-<ul class="itemHolder">
-<% @brands.each do |brand| %>
-    <div><li>
-			<center><font size = "4">
-			<%= brand.name %>
-		<br>
-			<%= link_to 'Show', brand, class: 'link-to' %>
-			<%= link_to 'Edit', edit_brand_path(brand), class: 'link-to' %>
-			<%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
-		<br>
+
+	<% if @current_user.try(:admin?) %>
+		<div id ="new" >
+			<%= link_to 'Add New Brand', new_brand_path, class: 'link-to'  %>
+		</div>
+	<%end%>
+<hr>
+	<% @brands.each do |brand| %>
+	   <div class="col-sm-6 col-md-4">
+			<h2 style="text-align:center;"><%= brand.name %></h2>
 			<img src="assets/<%= brand.image%>" width="200" height="200">
-		</font></center>
-	</li><% end %>
-	</div>
-</ul>
+			<br>
+			<div class="caption" style="text-align:center;">
+					<%= link_to 'All Products', brand, class: 'link-to' %>
+				<% if @current_user.try(:admin?) %>
+					<%= link_to 'Edit', edit_brand_path(brand), class: 'link-to' %>
+					<%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
+				<%end%>
+			</div>
+<hr>
+		</div>
+	<% end %>
 </div>
-
-
 </font>
 </center>
-

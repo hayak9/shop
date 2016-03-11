@@ -20,9 +20,16 @@ private
 	def store_location
 		session[:return_to] = request.fullpath
 	end
-end
 
-def set_last_seen_at
-  @current_user.update_attribute(:last_seen_at, Time.now)
-  session[:last_seen_at] = Time.now
+	def set_last_seen_at
+	  @current_user.update_attribute(:last_seen_at, Time.now)
+	  session[:last_seen_at] = Time.now
+	end
+
+	def current_cart
+		@cart = Cart.find(session[:cart_id])
+		rescue ActiveRecord::RecordNotFound
+			@cart = Cart.new
+			session[:cart_id] = @cart.id
+	  end	
 end

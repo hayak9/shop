@@ -1,50 +1,28 @@
 <center>
 <strong><font size = "4" color=#000000>
-<div align="left">
-	| <%= link_to 'Edit', edit_user_path(@current_user), class: 'link-to'  %> |
-</div>
-
 
 <% if signed_in? %>
-<table id="ud">
-	<tr>
-		<th>
-			Name:
-		</th>
-		<td>
-			<%= @current_user.firstname %>
-		</td>
-	</tr>
-	<tr>
-		<th>
-			Lastname:
-		</th>
-		<td>
-			<%= @current_user.lastname %>
-		</td>
-	</tr>
-		<tr>
-		<th>
-			Email:
-		</th>
-		<td>
-			<%= @current_user.email %>
-		</td>
-	</tr>
-	<tr>
-		<th>
-			Address:
-		</th>
-		<td>
-			<%= @current_user.address %>
-		</td>
-	</tr>
-</table>
+<div id="boxshadow" >
+	<div class="form-group" >
+	| <%= link_to 'Edit Profile', edit_user_path(@current_user), class: 'link-to'  %> |
+	</div>
+	<div class="form-group" >	
+		<%= image_tag("user.png", :size=>"150x150")%>
+	</div>
+	<div class="form-group" ><br />
+			Name:  <%= @current_user.firstname %>   <%= @current_user.lastname %>
+	</div>
+	<div class="form-group"><br />
+			Email: <%= @current_user.email %>
+	</div>
+	<div class="form-group"><br />	
+			Address: <%= @current_user.address %>	
+	</div>
+</div>		
 <%end %> 
 <br>
-
 <% if @current_user.admin == true %>
-<h1>All Users</h1>
+<h1>Manage All Users</h1>
 <div align="left">
 <%= link_to 'New User', new_user_path, class: 'link-to'  %>
 </div>

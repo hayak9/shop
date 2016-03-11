@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.all
-	@reviews= Review.paginate(:page => params[:page], :per_page => 5)
+	@reviews= Review.paginate(:page => params[:page], :per_page => 4)
 
   end
 

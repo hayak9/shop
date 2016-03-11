@@ -2,12 +2,32 @@ Rails.application.routes.draw do
 
   get 'pages/home'
   get 'pages/about'
+  get 'products/face'
+  get 'products/eyes'
+  get 'products/lips'
+  get 'products/brows'
+  get 'products/tools'
+  get 'products/nails'
+  get 'carts/show'
   
   resources :users
   resources :reviews
-  resources :products
+  resources :products do 
+	member do
+		put "Like" => "products#upvote"
+		put "unLike" => "products#downvote"
+	end
+   end
   resources :brands
-  
+  resources :orders
+  resources :lineitems
+  resources :carts do 
+	resources :lineitems
+  end
+  resources :products do 
+		resources :reviews 
+	end
+	
   controller :sessions do
 	 get 'login' => :new
 	 post 'login' => :create
@@ -15,9 +35,10 @@ Rails.application.routes.draw do
 	 delete 'logout' => :destroy
  end
 	
-	resources :products do 
-		resources :reviews 
-	end
+	
+	get 'search' => 'products#search'
+	
+	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

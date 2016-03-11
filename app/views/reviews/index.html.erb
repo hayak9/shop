@@ -1,22 +1,28 @@
 <center>
-<strong><font size = "4" color=#000000><h1>Rate's & Review's</h1></font>
+<strong><font size = "4" color=#000000>
+<h1>Rate's & Review's</h1></font>
 <%= will_paginate @reviews %>
-
-
+<hr>
 	<% @reviews.each do |review| %>
-	  <div id="rvs"><li>
-		<font size = "4">
-			<br>
+	<div class="col-sm-8 col-md-6">
+			<font size = "4">
 			<%= review.product.brand.name%>
 			<%= review.product.name%>
 			<br>
-			<img src="assets/<%= review.product.image%>/" width="150" height="150">
+			 <%= image_tag(review.product.image, :size=>"150x150")%>
 			<br><font color=black><%= review.user.firstname%>:</font>
 			<font color=#614c51><%= review.comment%></font>
 			<br>
-			<%= link_to 'Edit', edit_review_path(review), class: 'link-to' %>
-			<%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
-			</li></div>
-<% end %>
+			<% if signed_in? %>
+				<% if @current_user.firstname == review.user.firstname %>
+					<%= link_to 'Edit My Review', edit_review_path(review), class: 'link-to' %>
+				<%end%>	
+			<%end%>
+			<% if @current_user.admin == true %>
+				<%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-to' %>
+			<%end%>
+			<hr>
+		</div>
+   <% end %>
 </center>
 

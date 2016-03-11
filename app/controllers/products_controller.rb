@@ -1,14 +1,24 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
-	@products= Product.paginate(:page => params[:page], :per_page => 6)
-
+	@products= Product.paginate(:page => params[:page], :per_page => 6).search(params[:search])
+	@products = Product.all.order(:cached_votes_score => :desc)
   end
+  
+  def search 
+	@products = Product.search params[:query]
+	unless @products.empty? 
+		render 'index'
+	else
+		flash[:notice] = 'No record matches that search'
+		render 'index' 
+	end
+  end  
 
   # GET /products/1
   # GET /products/1.json
@@ -28,7 +38,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+	
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -63,7 +73,34 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  #upvote_from user
+  #downvote_from user
+  def upvote
+	@product.upvote_from @current_user
+	redirect_to products_path
+  end
+  def downvote
+  @product.downvote_from @current_user
+	redirect_to products_path
+  end
+  def face
+	@products = Product.all
+  end
+  def eyes
+	@products = Product.all
+  end
+  def lips
+	@products = Product.all
+  end
+  def tools
+	@products = Product.all
+  end
+  def brows
+	@products = Product.all
+  end
+  def nails
+	@products = Product.all
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

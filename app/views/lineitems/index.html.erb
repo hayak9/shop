@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Lineitems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Order</th>
+      <th>Quantity</th>
+      <th>Cart</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lineitems.each do |lineitem| %>
+      <tr>
+        <td><%= lineitem.product_id %></td>
+        <td><%= lineitem.order_id %></td>
+        <td><%= lineitem.quantity %></td>
+        <td><%= lineitem.cart_id %></td>
+  <div class="btn-group btn-group-lg">
+	<%= button_to 'Continue Shopping ?', products_path, :method=>:get, :class=> "btn btn-primary" %>
+	<%= button_to 'Empty Cart', @cart, method: :delete, confirm: 'Are you sure?', :class=> "btn btn-primary"%>
+	<%= button_to 'Checkout', new_order_path, :method => :get , :class=> "btn btn-primary"%>
+  </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lineitem', new_lineitem_path %>
